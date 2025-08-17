@@ -39,23 +39,26 @@ def modify_command(rubrica: Rubrica):
         rubrica (Rubrica): L'istanza della rubrica su cui effettuare la modifica.
     """
     index = index_selector(rubrica)
-    new_info = {}
-    print("Di seguito verranno richieste le informazioni da aggiornare.")
-    
-    cell_number_modify = input("Modificare numero di cellulare ? (Y/n) ")
-    if cell_number_modify == 'Y':
-        new_phone = cell_number_check()
-        new_info["telefono"] = new_phone
-    
-    email_modify = input("Modificare email ? (Y/n) ")
-    if email_modify == 'Y':
-        new_email = email_check()
-        new_info["email"] = new_email
+    if index is not None:
+        new_info = {}
+        print("Di seguito verranno richieste le informazioni da aggiornare.")
+        
+        cell_number_modify = input("Modificare numero di cellulare ? (Y/n) ")
+        if cell_number_modify == 'Y':
+            new_phone = cell_number_check()
+            new_info["telefono"] = new_phone
+        
+        email_modify = input("Modificare email ? (Y/n) ")
+        if email_modify == 'Y':
+            new_email = email_check()
+            new_info["email"] = new_email
 
-    if new_info:
-        rubrica.modifica_contatto(index, **new_info)
+        if new_info:
+            rubrica.modifica_contatto(index, **new_info)
+        else:
+            print("Nessun aggiornamento effettuato")
     else:
-        print("Nessun aggiornamento effettuato")
+        print("Nessun contatto in rubrica, per procedere alla modifica vanno prima aggiunti dei contatti")
     
 def delete_command(rubrica: Rubrica):
     """
