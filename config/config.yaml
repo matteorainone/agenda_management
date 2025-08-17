@@ -1,0 +1,10 @@
+command_list: {
+  Aggiungi: aggiungi un contatto alla rubrica,
+  Visualizza: elenca i contatti in rubrica, 
+  Modifica: modifica un contatto presente in rubrica, 
+  Elimina: elimina un contatto presente in rubrica,
+  Ricerca contatto: cerca un contatto usando una parola chiave,
+  Termina applicazione: spegne l'applicazione,
+  Aiuto: mostra i comandi disponibili
+  }
+datasource_path: .\Corso Python\progetto finale\agenda.json
