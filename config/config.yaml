@@ -7,4 +7,4 @@ command_list: {
   Termina applicazione: spegne l'applicazione,
   Aiuto: mostra i comandi disponibili
   }
-datasource_path: .\Corso Python\progetto finale\agenda.json
+datasource_path: /<path al json sorgente>/agenda.json
