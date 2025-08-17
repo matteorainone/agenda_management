@@ -9,7 +9,7 @@ commands = config['command_list'].items()
 
 def help_command():
     """
-    A function used to list the commands avaible
+    Stampa a console la lista dei comandi disponibili e la loro descrizione.
     """
     print("I comandi disponibili sono i seguenti:")
     for command, description in commands:
@@ -17,15 +17,27 @@ def help_command():
 
 def add_command(rubrica: Rubrica):
     """
-    A function used to manage the add command required from the user.
+    Gestisce il comando per aggiungere un nuovo contatto.
+
+    Richiede la generazione di un nuovo contatto tramite `new_contact_generator`
+    e lo aggiunge all'istanza della rubrica.
 
     Args:
-        inventor(y_path (str): the path of the inventory json file.
+        rubrica (Rubrica): L'istanza della rubrica a cui aggiungere il contatto.
     """
     contact = new_contact_generator()
     rubrica.aggiungi_contatto(contatto=contact)
 
 def modify_command(rubrica: Rubrica):
+    """
+    Gestisce il comando per modificare un contatto esistente.
+
+    Permette all'utente di selezionare un contatto e aggiornare il numero di
+    telefono o l'email.
+
+    Args:
+        rubrica (Rubrica): L'istanza della rubrica su cui effettuare la modifica.
+    """
     index = index_selector(rubrica)
     new_info = {}
     print("Di seguito verranno richieste le informazioni da aggiornare.")
@@ -46,6 +58,14 @@ def modify_command(rubrica: Rubrica):
         print("Nessun aggiornamento effettuato")
     
 def delete_command(rubrica: Rubrica):
+    """
+    Gestisce il comando per eliminare un contatto.
+
+    Permette all'utente di selezionare un contatto da eliminare dalla rubrica.
+
+    Args:
+        rubrica (Rubrica): L'istanza della rubrica da cui eliminare il contatto.
+    """
     index = index_selector(rubrica)
     if index is not None:
         rubrica.elimina_contatto(index=index)
@@ -53,6 +73,14 @@ def delete_command(rubrica: Rubrica):
         print("Nessun contatto eliminato")
 
 def research_command(rubrica: Rubrica):
+    """
+    Gestisce il comando per la ricerca di un contatto.
+
+    Richiede una parola chiave e stampa i risultati della ricerca.
+
+    Args:
+        rubrica (Rubrica): L'istanza della rubrica su cui effettuare la ricerca.
+    """
     keyword = keyword_validator()
     results = rubrica.ricerca_contatto(keyword)
     if results:
@@ -60,4 +88,10 @@ def research_command(rubrica: Rubrica):
             print(c)
 
 def list_command(rubrica: Rubrica):
+    """
+    Gestisce il comando per visualizzare tutti i contatti.
+
+    Args:
+        rubrica (Rubrica): L'istanza della rubrica da visualizzare.
+    """
     rubrica.visualizza_contatti()

@@ -2,8 +2,13 @@ import re
 
 def contact_name_surname_check():
     """
-    A function which checks the contact name and surname insert from the user.
+    Valida l'input di nome e cognome inseriti dall'utente.
 
+    Utilizza una regex per assicurarsi che i campi contengano solo lettere.
+    Continua a richiedere l'input finché non è valido.
+
+    Returns:
+        list: Una lista contenente il nome e il cognome validati.
     """
     pattern=r"^[A-Za-z]+$"
     check_name = False
@@ -32,8 +37,13 @@ def contact_name_surname_check():
 
 def cell_number_check():
     """
-    A function which checks if the cell number insert by the user is correct.
+    Valida il numero di cellulare inserito dall'utente.
 
+    Il numero deve essere composto da 10 cifre, iniziare con '3' e contenere
+    solo caratteri numerici. Richiede l'input finché non rispetta il formato.
+
+    Returns:
+        str: Il numero di cellulare validato.
     """
     while True:
         cell_number=input("Inserire numero di telefono: ")
@@ -54,8 +64,13 @@ def cell_number_check():
 
 def email_check():
     """
-    A function which checks if the email insert by the user is correct.
+    Valida l'indirizzo email inserito dall'utente.
 
+    Utilizza una regex per controllare che il formato dell'email sia corretto.
+    Continua a richiedere l'input finché non è valido.
+
+    Returns:
+        str: L'indirizzo email validato.
     """
     email_regex = r'^[a-zA-Z0-9_.-]+@[a-zA-Z0-9]+\.[a-zA-Z]{1,3}$'
     while True:
@@ -67,6 +82,15 @@ def email_check():
     return email
 
 def keyword_validator():
+    """
+    Valida la parola chiave (keyword) usata per la ricerca.
+
+    La parola chiave deve essere composta da lettere e, facoltativamente,
+    un underscore centrale. Richiede l'input finché non è valido.
+
+    Returns:
+        str: La parola chiave validata.
+    """
     pattern = r"^[A-Za-z]+(_[A-Za-z]+)?$" #solo lettere, facoltativo un underscore centrale
     while True:
         keyword = input("Inserire identificativo (nome/cognome/nome_cognome) dell'utente da cercare: ")
@@ -78,5 +102,15 @@ def keyword_validator():
     return keyword
 
 def user_input_format(input:str):
+    """
+    Formatta una stringa di input in modo da avere la prima lettera maiuscola
+    e le restanti minuscole.
+
+    Args:
+        input (str): La stringa da formattare.
+
+    Returns:
+        str: La stringa formattata.
+    """
     input_formatted = input.lower().capitalize()
     return input_formatted
