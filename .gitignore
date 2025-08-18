@@ -1,2 +1,12 @@
+# Ignora file compilati di Python
+*.pyc
+*.pyo
+
+# Ignora cartelle di cache ovunque
+**/__pycache__/
+
+# Ignora eventuali ambienti virtuali
+venv/
+.env/
+
 test/
-./__pycache__/

@@ -43,7 +43,8 @@ class Rubrica:
         try:
             data = load_json_data(self.master_file)
             return [Contact.from_dict(d) for d in data]
-        except ContactLoadError:
+        except ContactLoadError as e:
+            print(e)
             return []
         
     def _salva_modifiche(self):
@@ -69,8 +70,7 @@ class Rubrica:
         for i, c in enumerate(self.contatti):
             if c.codice_univoco() == codice:
                 return i,c
-            else:
-                None, None
+        return None, None
         
     
     def aggiungi_contatto(self, contatto: Contact):
@@ -100,8 +100,8 @@ class Rubrica:
                     self.modifica_contatto(index, telefono = contatto.telefono, email = contatto.email)
                 else:
                     print("Contatto non modificato")
-        except ContactAddError:
-            print("Aggiunta fallita")
+        except ContactAddError as e:
+            raise e
 
     def modifica_contatto(self, index, **kwargs):
         """
@@ -122,8 +122,8 @@ class Rubrica:
                     print("Informazione non presente in agenda. Non salvata.")
             
             self._salva_modifiche()
-        except ModifyContactError:
-            print("Nessuna modifica effettuata")
+        except ModifyContactError as e:
+            print(e, "Nessuna modifica effettuata")
 
     def ricerca_contatto(self, keyword):
         """
@@ -157,8 +157,8 @@ class Rubrica:
                 del self.contatti[index]
                 self._salva_modifiche()
                 print("Contatto eliminato")
-        except DeleteContactError:
-            print("Nessun contatto eliminato.")
+        except DeleteContactError as e:
+            print(e, "Nessun contatto eliminato.")
 
 
     def visualizza_contatti(self):
